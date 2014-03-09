@@ -1,5 +1,5 @@
 d()
-b.innerHTML += "<style>body{width:600px;margin:0 auto;font-family:Courier,monospace}#o{font-size:40px;border:2px solid;width:21rem;display:inline-block}#i{resize:both;overflow:auto;padding:20px;width:600px;height:250px;margin:0 auto;border:1px solid}v{color:red}</style><br><button id=x onclick=p()>Play</button><br><br><div id=o>.</div><br><br><br><div contenteditable id=i>Welcome to <a contenteditable=false href=//zethos.zolmeister.com>Zethos!</a> <br><br>This is a speed reading tool, inspired by others such as Gritz, Sprtiz, and Spreeder. <br>It's free and open source on <a contenteditable=false href=//github.com/Zolmeister/Zethos>GitHub.";
+b.innerHTML += "<style>body{width:600px;margin:0 auto;font-family:Courier}#o{font-size:40px;border:2px solid;width:21rem;display:inline-block}#i{overflow:auto;padding:20px;width:600px;height:350px;border:1px solid}v{color:red}</style><br><br><button onclick=p()>Play</button><br><br><c id=o>.</c><br><br><p contenteditable id=i>Welcome to <a contenteditable=false href=//zethos.zolmeister.com>Zethos!</a> <br><br>This is a speed reading tool, inspired by others such as Sprtiz, and Spreeder. <br>It's free and open source on <a contenteditable=false href=//github.com/Zolmeister/Zethos>GitHub.";
 
 var playing,index,input,loop,parse,focus,hyphenate;
 parse = function(str) {
@@ -25,55 +25,49 @@ parse = function(str) {
   //    return {7},hyphenated{x}
   
   hyphenate = function(str) {
-    return str.length <= 7 ? str : str.length <= 10 ? str.slice(0,str.length - 3)+'- '+str.slice(str.length-3) : str.slice(0,7)+'- '+hyphenate(str.slice(7))
+    with(str)
+    return length <= 7 ? str : length <= 10 ? slice(0,length - 3)+'- '+slice(length-3) : slice(0,7)+'- '+hyphenate(slice(7))
   }
   
   // return 2d array with word and focus point
   return str.trim().split(/[\s\n]+/).reduce(function(words, str) {
-    // focus point
-    focus = (str.length-1)/2|0
-    
-    for(j=focus;j>=0;j--)
-      if (/[aeiou]/.test(str[j])) {
-        focus = j
-        break
-      }
-    
-    t = 60000/500 // 500 wpm
+    with(str) {
+      // focus point
+      focus = (length-1)/2|0
       
-    if (str.length > 6)
-      t+=t/4
+      for(j=focus;j>=0;j--)
+        if (/[aeiou]/.test(str[j])) {
+          focus = j
+          break
+        }
       
-    if (~str.indexOf(','))
-      t+=t/2
+      t = 60000/500 // 500 wpm
+        
+      if (length > 6)
+        t+=t/4
+        
+      if (~indexOf(','))
+        t+=t/2
+        
+      if(/[\.!\?;]$/.test(str))
+        t+= t*1.5
       
-    if(/[\.!\?;]$/.test(str))
-      t+= t*1.5
-    
-    return str.length >= 15 || str.length - focus > 7 ? words.concat(parse(hyphenate(str))) : words.concat([[str, focus, t]])
+      return length >= 15 || length - focus > 7 ? words.concat(parse(hyphenate(str))) : words.concat([[str, focus, t]])
+    }
   }, [])
 }
 
 p = function() {
   index = 0
   input = parse(i.textContent);
-  if(playing) {
-     playing = 0
-     return x.innerHTML = 'Play'
-  }
-  playing = 1;
-  loop()
+  playing = !playing
+  playing && loop()
 }
 
 loop = function() {
-  if(playing) {
-      w = input[index++]
-      if(!t) return p()
-      
-      o.innerHTML = Array(8 - w[1]).join('&nbsp;')+w[0].slice(0,w[1])+'<v>'+w[0][w[1]]+'</v>'+w[0].slice(w[1]+1)
-      x.innerHTML = 'Stop'
-      setTimeout(loop, w[2])
-    }
+  w = input[index++] || p()
+  o.innerHTML = Array(8 - w[1]).join('&nbsp;')+w[0].slice(0,w[1])+'<v>'+w[0][w[1]]+'</v>'+w[0].slice(w[1]+1)
+  playing && setTimeout(loop, w[2])
 }
 
 p()
