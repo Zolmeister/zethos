@@ -1,0 +1,19 @@
+{
+  "name": "Zethos",
+  "version": "0.1.0",
+  "description": "A speed reading tool",
+  "devDependencies": {
+    "grunt": "~0.4.3",
+    "grunt-closure-compiler": "~0.0.21",
+    "grunt-jscrush": "~0.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Zolmeister/zethos.git"
+  },
+  "keywords": [
+    "speed",
+    "reading"
+  ],
+  "author": "Zolmeister"
+}
