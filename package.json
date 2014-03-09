@@ -15,5 +15,8 @@
     "speed",
     "reading"
   ],
-  "author": "Zolmeister"
+  "author": "Zolmeister",
+  "dependencies": {
+    "express": "~3.5.0"
+  }
 }
