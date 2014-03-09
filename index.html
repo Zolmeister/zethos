@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+	<head>
+		<title>JS1k, [COMPO] demo submission [ID]</title>
+		<meta charset="utf-8" />
+    <style>
+      html, body { margin: 0; padding: 0; border: 0; }
+      #c { display: block; } /* kill scrollbars from hell */
+    </style>
+	</head>
+	<body>
+		<canvas id="c"></canvas>
+		<script>
+			var a = document.getElementsByTagName('canvas')[0];
+			var b = document.body;
+      var d = function(e){ return function(){ e.parentNode.removeChild(e); }; }(a);
+      // unprefix some popular vendor prefixed things (but stick to their original name)
+      var AudioContext =
+        window.AudioContext ||
+        window.webkitAudioContext;
+      var requestAnimationFrame =
+        window.requestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(f){ setTimeout(f, 1000/30); };
+      // stretch canvas to screen size (once, wont onresize!)
+      a.style.width = (a.width = innerWidth) + 'px';
+      a.style.height = (a.height = innerHeight) + 'px';
+
+      var c = a.getContext('2d');
+		</script>
+		<script src='main.js'>
+		</script>
+	</body>
+</html>
