@@ -1,5 +1,5 @@
 d()
-b.innerHTML += "<style>body{width:600px;margin:0 auto;font-family:Courier}#o{font-size:40px;border:2px solid;width:21rem;display:inline-block}#i{overflow:auto;padding:20px;width:600px;height:350px;border:1px solid}v{color:red}</style><br><br><button onclick=p()>Play</button><br><br><c id=o>.</c><br><br><p contenteditable id=i>Welcome to <a contenteditable=false href=//zethos.zolmeister.com>Zethos!</a> <br><br>This is a speed reading tool, inspired by others such as Sprtiz, and Spreeder. <br>It's free and open source on <a contenteditable=false href=//github.com/Zolmeister/Zethos>GitHub.";
+b.innerHTML += "<style>body{width:600px;margin:0 auto;font-family:Courier}#o{font-size:40px;border:2px solid;width:21rem;display:inline-block}#i{overflow:auto;padding:20px;width:600px;height:350px;border:1px solid}v{color:red}</style><br><br><button onclick=p()>Play</button><br><br><c id=o>.</c><br><br><p contenteditable id=i>Welcome to <a contenteditable=false href=//zethos.zolmeister.com>Zethos!</a> <br><br>This is a speed reading tool, inspired by others such as Spritz, and Spreeder. <br>It's free and open source on <a contenteditable=false href=//github.com/Zolmeister/Zethos>GitHub.";
 
 var playing,index,input,loop,parse,focus,hyphenate;
 parse = function(str) {
