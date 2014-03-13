@@ -59,7 +59,7 @@ parse = function(str) {
 
 p = function() {
   index = 0
-  input = parse(i.textContent);
+  input = parse(i.innerText);
   playing = !playing
   playing && loop()
 }
