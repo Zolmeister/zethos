@@ -9,11 +9,11 @@ parse = function(str) {
   // if, when the word is shifted to its focus point
   //   one end prodtrudes from either end more than 7 chars
   //   re-run parser after hyphenating the words
-  
+
   // focus point
   // start in middle of word (default focus point)
   // move left until you hit a vowel, then stop
-  
+
   // hyphenating
   //    if <= 7 chars
   //      return self
@@ -23,35 +23,35 @@ parse = function(str) {
   //    return {7},{7}
   //    else
   //    return {7},hyphenated{x}
-  
+
   hyphenate = function(str) {
     with(str)
     return length <= 7 ? str : length <= 10 ? slice(0,length - 3)+'- '+slice(length-3) : slice(0,7)+'- '+hyphenate(slice(7))
   }
-  
+
   // return 2d array with word and focus point
-  return str.trim().split(/[\s\n]+/).reduce(function(words, str) {
+  return str.trim().replace(/([.?!])([A-Z])/g, "$1 $2").split(/[\s\n]+/).reduce(function(words, str) {
     with(str) {
       // focus point
       focus = (length-1)/2|0
-      
+
       for(j=focus;j>=0;j--)
         if (/[aeiou]/.test(str[j])) {
           focus = j
           break
         }
-      
+
       t = 60000/500 // 500 wpm
-        
+
       if (length > 6)
         t+=t/4
-        
+
       if (~indexOf(','))
         t+=t/2
-        
+
       if(/[\.!\?;]$/.test(str))
         t+= t*1.5
-      
+
       return length >= 15 || length - focus > 7 ? words.concat(parse(hyphenate(str))) : words.concat([[str, focus, t]])
     }
   }, [])
